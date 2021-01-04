@@ -48,12 +48,10 @@ public class ToolbarFragment extends Fragment {
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-
-        Activity activity = getActivity();
         try {
-            _toolbarCallback = (ToolbarCallback)activity;
+            _toolbarCallback = (ToolbarCallback)context;
         } catch (ClassCastException e) {
-            throw new ClassCastException(activity.toString() + " must implements ToolbarCallbac");
+            throw new ClassCastException(context.toString() + " must implements ToolbarCallbac");
         }
     }
 
@@ -71,7 +69,7 @@ public class ToolbarFragment extends Fragment {
         _editText = (EditText) view.findViewById(R.id.editTextPersonName);
 
         _seekBar = (SeekBar) view.findViewById(R.id.seekBar);
-        _seekBar.setOnSeekBarChangeListener(new CustomSeekBarListener());
+        _seekBar.setOnSeekBarChangeListener(new CustomSeekBarListener(_toolbarCallback, _editText));
 
         Button changeButton = (Button) view.findViewById(R.id.changeButton);
         changeButton.setOnClickListener(new CustomButtonListener(_toolbarCallback, _editText, _seekBar));
