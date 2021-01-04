@@ -28,8 +28,7 @@ public class TextFragment extends Fragment {
      *
      * @return A new instance of fragment TekstFragment.
      */
-    // TODO: Rename and change types and number of parameters
-    public static TextFragment newInstance(String param1, String param2) {
+    public static TextFragment newInstance() {
         TextFragment fragment = new TextFragment();
         Bundle args = new Bundle();
         fragment.setArguments(args);
